@@ -4,10 +4,10 @@ import { useState } from 'react'
 import PageOne from '../components/pages/page1'
 import PageTwo from '../components/pages/page2'
 import PageThree from '../components/pages/pages3'
+import PagesFour from '../components/pages/pages4'
 export default function Home() {
 
   const [ count, setCount ] = useState(1)
-  const [ shutDown, setShutDown ] = useState(false)
 
 
   return (
@@ -18,58 +18,37 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {!shutDown ?
-        <div className={styles.pon}>
-          <h2>Press Button</h2>
-          <button className={styles.sd} onClick={() => {
-            setShutDown(() => !shutDown)
+      <>
+        {count == 1 ? <PageOne /> : null}
+        {count == 2 ? <PageTwo /> : null}
+        {count == 3 ? <PageThree /> : null}
+        {count == 4 ? <PagesFour /> : null}
 
-          }}>
-            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-power" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M7 6a7.75 7.75 0 1 0 10 0" />
-              <line x1="12" y1="4" x2="12" y2="12" />
-            </svg>
-          </button>
-        </div> : <>
-          {count == 1 ? <PageOne /> : null}
-          {count == 2 ? <PageTwo /> : null}
-          {count == 3 ? <PageThree /> : null}
-
-          <div className={styles.btnContainer}>
-            <button className={styles.shutDown} onClick={() => setShutDown(() => !shutDown)}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-power" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <div className={styles.btnContainer}>
+          <div className={styles.con}>
+            <button disabled={count == 1} onClick={() => setCount(count - 1)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-left" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M7 6a7.75 7.75 0 1 0 10 0" />
-                <line x1="12" y1="4" x2="12" y2="12" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <line x1="5" y1="12" x2="11" y2="18" />
+                <line x1="5" y1="12" x2="11" y2="6" />
               </svg>
             </button>
-            <div className={styles.con}>
-              <button disabled={count == 1} onClick={() => setCount(count - 1)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-left" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <line x1="5" y1="12" x2="11" y2="18" />
-                  <line x1="5" y1="12" x2="11" y2="6" />
-                </svg>
-              </button>
-              <div className={styles.btnCon}>
-                <h2>{count}</h2>
-                <span>{" "}/ 3</span>
-              </div>
-              <button disabled={count == 3} onClick={() => setCount(count + 1)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-right" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <line x1="13" y1="18" x2="19" y2="12" />
-                  <line x1="13" y1="6" x2="19" y2="12" />
-                </svg>
-              </button>
+            <div className={styles.btnCon}>
+              <h2>{count}</h2>
+              <span>{" "}/ 4</span>
             </div>
+            <button disabled={count == 4} onClick={() => setCount(count + 1)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-right" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <line x1="13" y1="18" x2="19" y2="12" />
+                <line x1="13" y1="6" x2="19" y2="12" />
+              </svg>
+            </button>
           </div>
-        </>}
-
-
+        </div>
+      </>
     </div>
   )
 }

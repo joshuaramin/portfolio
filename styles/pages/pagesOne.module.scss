@@ -1,4 +1,6 @@
-@import '@styles/../../variables.module';
+@import "../mixins.module";
+@import "../variables.module";
+
 .container {
  width: 100%;
  overflow-y: auto;
